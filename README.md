@@ -1,5 +1,7 @@
 # Student & Employee Management System
 
+🌐 **Live Demo:** https://student-employee-management-system.vercel.app
+
 A full-stack, production-style admin dashboard for managing students and employees,
 built with React (Vite + Bootstrap 5) on the frontend and Node.js / Express / MySQL
 on the backend, secured with JWT authentication.
