@@ -1,31 +1,49 @@
+```css
 :root {
-  --sms-primary: #4f46e5;
-  --sms-primary-dark: #3730a3;
-  --sms-accent: #06b6d4;
+  /* India Tech Group Branding */
+  --sms-primary: #0B1F3A;
+  --sms-primary-dark: #0B1F3A;
+  --sms-accent: #F39A1E;
+
+  /* Status colors */
   --sms-success: #16a34a;
   --sms-danger: #dc2626;
-  --sms-bg: #f4f6fb;
-  --sms-surface: rgba(255, 255, 255, 0.75);
-  --sms-border: rgba(15, 23, 42, 0.08);
-  --sms-text: #0f172a;
+  --sms-warning: #F39A1E;
+  --sms-info: #0B1F3A;
+
+  /* Main UI */
+  --sms-bg: #F5F7FA;
+  --sms-surface: #FFFFFF;
+  --sms-border: rgba(11, 31, 58, 0.10);
+  --sms-text: #0B1F3A;
   --sms-text-muted: #64748b;
+
   --sms-sidebar-width: 260px;
   --sms-transition: all 0.2s ease-in-out;
 }
 
+/* ---------- Dark Theme ---------- */
+
 [data-theme='dark'] {
-  --sms-bg: #0f1220;
-  --sms-surface: rgba(30, 33, 55, 0.75);
-  --sms-border: rgba(255, 255, 255, 0.08);
-  --sms-text: #e5e7eb;
-  --sms-text-muted: #9ca3af;
+  --sms-bg: #0B1F3A;
+  --sms-surface: #142B49;
+  --sms-border: rgba(255, 255, 255, 0.10);
+  --sms-text: #FFFFFF;
+  --sms-text-muted: #cbd5e1;
 }
+
+/* ---------- Global ---------- */
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  margin: 0;
   background: var(--sms-bg);
   color: var(--sms-text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -33,27 +51,29 @@ body {
   min-height: 100vh;
 }
 
-/* ---------- Glassmorphism surfaces ---------- */
+/* ---------- Glass / Cards ---------- */
+
 .glass-card {
   background: var(--sms-surface);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--sms-border);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 32px rgba(11, 31, 58, 0.08);
   transition: var(--sms-transition);
 }
 
 .glass-card:hover {
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 12px 40px rgba(11, 31, 58, 0.12);
 }
 
 /* ---------- Layout ---------- */
+
 .sms-sidebar {
   width: var(--sms-sidebar-width);
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--sms-primary-dark), var(--sms-primary));
-  color: #fff;
+  background: #0B1F3A;
+  color: #FFFFFF;
   position: fixed;
   top: 0;
   left: 0;
@@ -62,49 +82,91 @@ body {
 }
 
 .sms-sidebar .nav-link {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   border-radius: 10px;
   margin: 2px 10px;
   padding: 10px 14px;
+  width: calc(100% - 20px);
   transition: var(--sms-transition);
 }
 
-.sms-sidebar .nav-link:hover,
-.sms-sidebar .nav-link.active {
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
+.sms-sidebar .nav-link:hover {
+  background: rgba(243, 154, 30, 0.18);
+  color: #FFFFFF;
 }
+
+.sms-sidebar .nav-link.active {
+  background: #F39A1E;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* ---------- Main Area ---------- */
 
 .sms-main {
   margin-left: var(--sms-sidebar-width);
+  width: calc(100% - var(--sms-sidebar-width));
   min-height: 100vh;
-  transition: margin-left 0.25s ease-in-out;
+  background: var(--sms-bg);
+  transition: margin-left 0.25s ease-in-out,
+              width 0.25s ease-in-out;
+  overflow-x: hidden;
 }
+
+/* Important: prevent Bootstrap rows from going behind sidebar */
+
+.sms-main > main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix Bootstrap negative row margins */
+
+.sms-main > main .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Make columns stay inside main area */
+
+.sms-main > main .row > [class*='col-'] {
+  min-width: 0;
+}
+
+/* ---------- Mobile Layout ---------- */
 
 @media (max-width: 991.98px) {
   .sms-sidebar {
     transform: translateX(-100%);
   }
+
   .sms-sidebar.open {
     transform: translateX(0);
   }
+
   .sms-main {
     margin-left: 0;
+    width: 100%;
   }
 }
 
-/* ---------- Stat cards ---------- */
+/* ---------- Stat Cards ---------- */
+
 .stat-card {
   border-radius: 16px;
   padding: 1.25rem;
-  color: #fff;
+  color: #FFFFFF;
   position: relative;
   overflow: hidden;
+  border: none;
+  box-shadow: 0 8px 24px rgba(11, 31, 58, 0.10);
+  width: 100%;
 }
 
 .stat-card .stat-icon {
   font-size: 2rem;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .stat-card .stat-value {
@@ -112,22 +174,138 @@ body {
   font-weight: 700;
 }
 
-.bg-grad-indigo { background: linear-gradient(135deg, #4f46e5, #6366f1); }
-.bg-grad-cyan   { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-.bg-grad-green  { background: linear-gradient(135deg, #15803d, #22c55e); }
-.bg-grad-amber  { background: linear-gradient(135deg, #b45309, #f59e0b); }
+/* India Tech Group stat-card palette */
 
-/* ---------- Custom cursor ---------- */
+.bg-grad-indigo {
+  background: #0B1F3A;
+}
+
+.bg-grad-cyan {
+  background: #F39A1E;
+}
+
+.bg-grad-green {
+  background: #0B1F3A;
+}
+
+.bg-grad-amber {
+  background: #F39A1E;
+}
+
+/* ---------- Dashboard Stats ---------- */
+
+.dashboard-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-content .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.dashboard-stats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.stat-card-wrapper {
+  min-width: 0;
+  width: 100%;
+}
+
+.stat-card-wrapper .stat-card {
+  width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-primary {
+  --bs-btn-bg: #0B1F3A;
+  --bs-btn-border-color: #0B1F3A;
+  --bs-btn-hover-bg: #07162A;
+  --bs-btn-hover-border-color: #07162A;
+  --bs-btn-active-bg: #07162A;
+  --bs-btn-active-border-color: #07162A;
+}
+
+.btn-warning {
+  --bs-btn-bg: #F39A1E;
+  --bs-btn-border-color: #F39A1E;
+  --bs-btn-color: #FFFFFF;
+  --bs-btn-hover-bg: #d9820d;
+  --bs-btn-hover-border-color: #d9820d;
+  --bs-btn-hover-color: #FFFFFF;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #0B1F3A;
+  --bs-btn-border-color: #0B1F3A;
+  --bs-btn-hover-bg: #0B1F3A;
+  --bs-btn-hover-border-color: #0B1F3A;
+  --bs-btn-hover-color: #FFFFFF;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: #0B1F3A;
+}
+
+a:hover {
+  color: #F39A1E;
+}
+
+/* ---------- Headings ---------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--sms-text);
+}
+
+.text-primary {
+  color: #0B1F3A !important;
+}
+
+.text-warning {
+  color: #F39A1E !important;
+}
+
+/* ---------- Custom Cursor ---------- */
+
 .custom-cursor {
   position: fixed;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid var(--sms-primary);
+  border: 2px solid #F39A1E;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.15s, height 0.15s, background 0.15s;
+  transition: width 0.15s,
+              height 0.15s,
+              background 0.15s;
   mix-blend-mode: difference;
   display: none;
 }
@@ -141,15 +319,17 @@ body {
 .custom-cursor.active {
   width: 32px;
   height: 32px;
-  background: var(--sms-primary);
+  background: #F39A1E;
   opacity: 0.35;
 }
 
-/* ---------- Scroll-reveal ---------- */
+/* ---------- Scroll Reveal ---------- */
+
 .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: opacity 0.5s ease-out,
+              transform 0.5s ease-out;
 }
 
 .reveal.in-view {
@@ -157,17 +337,19 @@ body {
   transform: translateY(0);
 }
 
-/* ---------- Login page ---------- */
+/* ---------- Login Page ---------- */
+
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at top left, #6366f1 0%, #312e81 45%, #0f172a 100%);
+  background: #F5F7FA;
   padding: 1rem;
 }
 
-/* ---------- Misc ---------- */
+/* ---------- Status Badges ---------- */
+
 .status-badge {
   border-radius: 999px;
   padding: 0.35em 0.75em;
@@ -176,9 +358,40 @@ body {
   letter-spacing: 0.02em;
 }
 
-.table-hover-row:hover {
-  background: rgba(79, 70, 229, 0.05);
+.status-badge.bg-success {
+  background-color: #16a34a !important;
+  color: #FFFFFF;
 }
+
+.status-badge.bg-danger {
+  background-color: #dc2626 !important;
+  color: #FFFFFF;
+}
+
+.status-badge.bg-warning {
+  background-color: #F39A1E !important;
+  color: #FFFFFF;
+}
+
+.status-badge.bg-primary {
+  background-color: #0B1F3A !important;
+  color: #FFFFFF;
+}
+
+/* ---------- Profile / Student / Employee Avatar ---------- */
+
+.rounded-circle.bg-primary {
+  background-color: #F39A1E !important;
+  color: #FFFFFF !important;
+}
+
+/* ---------- Tables ---------- */
+
+.table-hover-row:hover {
+  background: rgba(243, 154, 30, 0.08);
+}
+
+/* ---------- Theme Toggle ---------- */
 
 .theme-toggle-btn {
   border-radius: 999px;
@@ -187,7 +400,16 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-color: rgba(11, 31, 58, 0.15);
 }
+
+.theme-toggle-btn:hover {
+  background: #F39A1E;
+  color: #FFFFFF;
+  border-color: #F39A1E;
+}
+
+/* ---------- Floating Actions ---------- */
 
 .floating-actions {
   position: fixed;
@@ -207,18 +429,200 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  box-shadow: 0 8px 24px rgba(11, 31, 58, 0.20);
+  color: #FFFFFF;
   border: none;
 }
+
+/* ---------- Brand Logo ---------- */
 
 .brand-logo {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.15);
+  background: #F39A1E;
+  color: #FFFFFF;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+}
+
+/* ---------- Forms ---------- */
+
+.form-control,
+.form-select {
+  border-color: rgba(11, 31, 58, 0.15);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #F39A1E;
+  box-shadow: 0 0 0 0.2rem rgba(243, 154, 30, 0.18);
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: #FFFFFF;
+  border-color: rgba(11, 31, 58, 0.08);
+}
+
+/* ---------- Navbar / Topbar ---------- */
+
+.navbar,
+.sms-navbar {
+  background: #FFFFFF;
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: #F39A1E;
+  color: #FFFFFF;
+}
+
+/* ---------- Admin Layout ---------- */
+
+.admin-layout {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.admin-content {
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem;
+  overflow-x: hidden;
+}
+
+.admin-content > * {
+  max-width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .admin-content {
+    padding: 1rem;
+  }
+}
+
+/* =========================================================
+   FINAL SIDEBAR / CONTENT OVERLAP FIX
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Fixed sidebar stays completely separate from page content */
+.admin-layout .sms-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+
+  width: 260px !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+
+  z-index: 2000 !important;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content starts AFTER sidebar */
+.admin-layout .sms-main {
+  position: relative !important;
+
+  margin-left: 260px !important;
+  width: calc(100% - 260px) !important;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+}
+
+/* Main page content */
+.admin-layout .admin-content {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+
+  padding: 24px;
+
+  overflow-x: hidden;
+}
+
+/* Make sure dashboard rows/cards cannot escape their container */
+.admin-content .row {
+  width: 100%;
+  max-width: 100%;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.admin-content .stat-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 991.98px) {
+
+  .admin-layout .sms-sidebar {
+    width: 260px !important;
+
+    transform: translateX(-100%);
+  }
+
+  .admin-layout .sms-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-layout .sms-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-layout .admin-content {
+    padding: 16px;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    z-index: 1990;
+  }
+}
+
+/* Desktop: sidebar must always remain above content */
+@media (min-width: 992px) {
+
+  .admin-layout .sms-sidebar {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
 }

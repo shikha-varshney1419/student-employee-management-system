@@ -36,8 +36,8 @@ module.exports = {
   },
 
   defaultAdmin: {
-    username: process.env.DEFAULT_ADMIN_USERNAME || 'admin',
-    email: process.env.DEFAULT_ADMIN_EMAIL || 'admin@example.com',
-    password: process.env.DEFAULT_ADMIN_PASSWORD || 'Admin@12345',
+    username: process.env.DEFAULT_ADMIN_USERNAME,
+    email: process.env.DEFAULT_ADMIN_EMAIL,
+    password: process.env.DEFAULT_ADMIN_PASSWORD,
   },
 };

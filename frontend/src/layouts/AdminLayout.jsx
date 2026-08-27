@@ -10,6 +10,7 @@ export default function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
+
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,26 +23,31 @@ export default function AdminLayout({ children }) {
   };
 
   return (
-    <div>
+    <div className="admin-layout">
       <CustomCursor />
+
       <Sidebar
         open={sidebarOpen}
         onNavigate={() => setSidebarOpen(false)}
         onLogoutClick={() => setShowLogoutConfirm(true)}
       />
+
       {sidebarOpen && (
         <div
-          className="position-fixed top-0 start-0 w-100 h-100 d-lg-none"
-          style={{ background: 'rgba(0,0,0,0.4)', zIndex: 1020 }}
+          className="sidebar-overlay"
           onClick={() => setSidebarOpen(false)}
         />
       )}
+
       <div className="sms-main">
         <Navbar
           onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
           onLogoutClick={() => setShowLogoutConfirm(true)}
         />
-        <main className="p-3 p-md-4">{children}</main>
+
+        <main className="admin-content">
+          {children}
+        </main>
       </div>
 
       <FloatingActions />

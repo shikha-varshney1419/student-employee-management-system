@@ -1,0 +1,30 @@
+warning: in the working copy of 'backend/.env.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/config/config.js', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/backend/.env.example b/backend/.env.example[m
+[1mindex 759e2f6..d99f90e 100644[m
+[1m--- a/backend/.env.example[m
+[1m+++ b/backend/.env.example[m
+[36m@@ -18,5 +18,5 @@[m [mCLIENT_URL=http://localhost:5173[m
+ [m
+ # Default admin (used only by database/seedAdmin.js)[m
+ DEFAULT_ADMIN_USERNAME=admin[m
+[31m-DEFAULT_ADMIN_EMAIL=admin@example.com[m
+[31m-DEFAULT_ADMIN_PASSWORD=Admin@12345[m
+[32m+[m[32mDEFAULT_ADMIN_EMAIL=[m
+[32m+[m[32mDEFAULT_ADMIN_PASSWORD=[m
+[1mdiff --git a/backend/config/config.js b/backend/config/config.js[m
+[1mindex c659874..4c2050e 100644[m
+[1m--- a/backend/config/config.js[m
+[1m+++ b/backend/config/config.js[m
+[36m@@ -36,8 +36,8 @@[m [mmodule.exports = {[m
+   },[m
+ [m
+   defaultAdmin: {[m
+[31m-    username: process.env.DEFAULT_ADMIN_USERNAME || 'admin',[m
+[31m-    email: process.env.DEFAULT_ADMIN_EMAIL || 'admin@example.com',[m
+[31m-    password: process.env.DEFAULT_ADMIN_PASSWORD || 'Admin@12345',[m
+[32m+[m[32m    username: process.env.DEFAULT_ADMIN_USERNAME,[m
+[32m+[m[32m    email: process.env.DEFAULT_ADMIN_EMAIL,[m
+[32m+[m[32m    password: process.env.DEFAULT_ADMIN_PASSWORD,[m
+   },[m
+ };[m

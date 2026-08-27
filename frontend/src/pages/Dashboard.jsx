@@ -29,7 +29,7 @@ function useCountUp(value, duration = 900) {
 function StatCard({ icon, label, value, gradient }) {
   const animated = useCountUp(value);
   return (
-    <div className="col-6 col-lg-3">
+    <div className="stat-card-wrapper">
       <div className={`stat-card ${gradient} h-100`}>
         <div className="d-flex justify-content-between align-items-start">
           <div>
@@ -69,12 +69,12 @@ export default function Dashboard() {
   if (loading) return <Loader label="Loading dashboard..." />;
 
   return (
-    <div>
+    <div className="dashboard-content">
       <h4 className="fw-bold mb-4">Dashboard Overview</h4>
 
       {error && <div className="alert alert-danger">{error}</div>}
 
-      <div className="row g-3 mb-4">
+      <div className="dashboard-stats mb-4">
         <StatCard icon="bi-mortarboard-fill" label="Total Students" value={studentStats.total} gradient="bg-grad-indigo" />
         <StatCard icon="bi-person-check-fill" label="Active Students" value={studentStats.active} gradient="bg-grad-cyan" />
         <StatCard icon="bi-people-fill" label="Total Employees" value={employeeStats.total} gradient="bg-grad-green" />

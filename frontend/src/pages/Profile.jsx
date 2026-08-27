@@ -10,8 +10,13 @@ export default function Profile() {
       <div className="glass-card p-4" style={{ maxWidth: 480 }}>
         <div className="d-flex align-items-center gap-3 mb-4">
           <span
-            className="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center fw-bold"
-            style={{ width: 64, height: 64, fontSize: '1.5rem' }}
+            className="rounded-circle text-white d-inline-flex align-items-center justify-content-center fw-bold"
+            style={{
+              width: 64,
+              height: 64,
+              fontSize: '1.5rem',
+              backgroundColor: '#F39A1E',
+            }}
           >
             {admin?.username ? admin.username.slice(0, 2).toUpperCase() : 'AD'}
           </span>

@@ -63,20 +63,41 @@ export default function SearchFilter() {
     <div>
       <h4 className="fw-bold mb-4">Search & Filter</h4>
 
-      <ul className="nav nav-pills mb-3">
-        <li className="nav-item">
-          <button className={`nav-link ${tab === 'students' ? 'active' : ''}`} onClick={() => switchTab('students')}>
-            <i className="bi bi-mortarboard-fill me-1" />
-            Students
-          </button>
-        </li>
-        <li className="nav-item">
-          <button className={`nav-link ${tab === 'employees' ? 'active' : ''}`} onClick={() => switchTab('employees')}>
-            <i className="bi bi-people-fill me-1" />
-            Employees
-          </button>
-        </li>
-      </ul>
+     <ul className="nav nav-pills mb-3">
+       <li className="nav-item">
+        <button
+          type="button"
+          className="nav-link"
+          style={{
+            backgroundColor: tab === 'students' ? '#F39A1E' : 'transparent',
+            color: tab === 'students' ? '#FFFFFF' : '#0B1F3A',
+            fontWeight: 600,
+            border: 'none',
+          }}
+          onClick={() => switchTab('students')}
+        >
+          <i className="bi bi-mortarboard-fill me-1" />
+          Students
+        </button>
+      </li>
+
+      <li className="nav-item">
+        <button
+          type="button"
+          className="nav-link"
+          style={{
+            backgroundColor: tab === 'employees' ? '#F39A1E' : 'transparent',
+            color: tab === 'employees' ? '#FFFFFF' : '#0B1F3A',
+            fontWeight: 600,
+            border: 'none',
+          }}
+          onClick={() => switchTab('employees')}
+        >
+          <i className="bi bi-people-fill me-1" />
+          Employees
+        </button>
+      </li>
+    </ul>
 
       <form className="glass-card p-3 mb-3" onSubmit={runSearch}>
         {tab === 'students' ? (
