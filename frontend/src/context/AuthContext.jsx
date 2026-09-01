@@ -5,9 +5,17 @@ export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(() => {
-    const stored = localStorage.getItem('sms_admin');
-    return stored ? JSON.parse(stored) : null;
-  });
+  const stored = localStorage.getItem('sms_admin');
+
+  if (!stored) return null;
+
+  try {
+    return JSON.parse(stored);
+  } catch {
+    localStorage.removeItem('sms_admin');
+    return null;
+  }
+});
   const [token, setToken] = useState(() => localStorage.getItem('sms_token'));
   const [loading, setLoading] = useState(true);
 
